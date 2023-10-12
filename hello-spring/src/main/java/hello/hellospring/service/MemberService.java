@@ -9,7 +9,11 @@ import java.util.Optional;
 
 public class MemberService {
 
-    private final MemberRepository memberRepository = new MemoryMemberRepository();
+    private final MemberRepository memberRepository;
+
+    public MemberService(MemberRepository memberRepository) {       //레퍼지토리를 직접 생성하는 것이 아니라 외부에서 넣어주도록
+        this.memberRepository = memberRepository;
+    }
 
     public Long join(Member member) {       //회원가입
         //같은 이름 중복회원
@@ -20,7 +24,7 @@ public class MemberService {
 //        });
 
         validateDuplicateMember(member);        //중복 회원 검증
-        memberRepository.save(member);
+        memberRepository.save(member);          //회원정보 저장
         return member.getId();
     }
 

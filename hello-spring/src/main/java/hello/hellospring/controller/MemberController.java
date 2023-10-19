@@ -18,6 +18,7 @@ public class MemberController {
     @Autowired
     public MemberController(MemberService memberService) {      //MemberService가 순수한 자바 코드기 때문에 영향이 없음
         this.memberService = memberService;
+        System.out.println("memberService = " + memberService.getClass());
     }
 
     @GetMapping("/members/new")
